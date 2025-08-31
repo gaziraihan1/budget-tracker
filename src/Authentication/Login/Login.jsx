@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Alert from "../../Components/Alert/Alert";
-import useProfile from "../../hooks/userInfo/useProfile";
+import { useProfileContext } from "../../context/ProfileContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [alert, setAlert] = useState({show: false, message: '', type: "success"});
-  const {profile} = useProfile();
+  const {refetch} = useProfileContext();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,10 +22,11 @@ const Login = () => {
         credentials: "include"
       });
       const data = await res.json();
-      console.log(data);
 
+      if(res.ok) {
+        await refetch()
+      }
       if(res.status === 200) {
-        setAlert({show: true, message: data.message, type: 'success'});
         navigate('/')
       }
       else if(res.status === 400) {
@@ -38,9 +39,7 @@ const Login = () => {
       console.error(err);
     }
   };
-  if(profile) {
-    return navigate('/')
-  }
+ 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-blue-200 px-4">

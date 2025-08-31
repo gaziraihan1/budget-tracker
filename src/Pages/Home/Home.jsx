@@ -6,7 +6,7 @@ import Guidelines from '../../Components/Home/Guidelines';
 
 const Home = () => {
     return (
-        <div className='flex flex-col gap-12 lg:gap-18 w-full lg:w-11/12 2xl:w-10/12 mx-auto'>
+        <div className='flex flex-col gap-12 lg:gap-18 2xl:gap-24'>
             <Banner />
             <ForWhat />
             <Feature />

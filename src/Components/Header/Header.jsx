@@ -1,10 +1,35 @@
 import React, { useState } from "react";
-import useProfile from "../../hooks/userInfo/useProfile";
 import { Link } from "react-router";
+import Alert from "../Alert/Alert";
+import { useProfileContext } from "../../context/ProfileContext";
 
 const Header = () => {
-  const { profile} = useProfile();
+  const { profile, refetch} = useProfileContext();
   const [isOpen, setIsOpen] = useState(false);
+  const [alert, setAlert] = useState({message: '', type: 'success', show: false});
+  const handleLogout = async () => {
+  try {
+    const res = await fetch("http://localhost:5000/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      setAlert({
+        show: true,
+        message: "Logged out successfully",
+        type: "success",
+      });
+      refetch()
+    } else {
+      const error = await res.json();
+      setAlert({ show: true, message: error.message || "Logout failed", type: "error" });
+    }
+  } catch (err) {
+    setAlert({ show: true, message: err.message||"Network error"  , type: "error" });
+  }
+};
+
 
   const links = (
     <>
@@ -12,7 +37,7 @@ const Header = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={"/budget-tracker"}>Your Budget</Link>
+        <Link to={"/budget-tracker"}>My Budget</Link>
       </li>
       {!profile && (
         <>
@@ -31,10 +56,10 @@ const Header = () => {
     <nav className="bg-white shadow-md px-4 lg:px-0 py-3">
       <div className="w-full lg:w-11/12 2xl:w-10/12 mx-auto flex justify-between items-center">
         <div className="text-xl font-bold">DailyBudget</div>
-        <ul className="hidden md:flex gap-6 items-center">{links}</ul>
+        <ul className="hidden md:flex gap-6 lg:gap-12  items-center">{links}</ul>
         {profile && (
           <div className="hidden md:block">
-            <button className="bg-red-500 text-white px-4 py-1 rounded-lg">
+            <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-1 rounded-lg">
               Logout
             </button>
           </div>
@@ -71,12 +96,23 @@ const Header = () => {
         <div className="md:hidden mt-3">
           <ul className="flex flex-col gap-3">{links}</ul>
           {profile && (
-            <button className="bg-red-500 text-white w-full py-2 mt-2 rounded-lg">
+            <button onClick={handleLogout} className="bg-red-500 text-white w-full py-2 mt-2 rounded-lg">
               Logout
             </button>
           )}
         </div>
       )}
+      {
+        alert.show && (<div
+      className={`fixed top-5 right-5 px-4 py-3 rounded shadow bg-gray-200 flex items-center justify-between w-80`}
+    >
+      <span>{alert.message}</span>
+      <button onClick={() => setAlert({show: false})} className="font-bold ml-4">&times;</button>
+    </div>)
+        
+      }
+
+    
     </nav>
   );
 };
