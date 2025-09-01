@@ -3,6 +3,8 @@ import Banner from '../../Components/Home/Banner';
 import ForWhat from '../../Components/Home/ForWhat';
 import Feature from '../../Components/Home/Feature';
 import Guidelines from '../../Components/Home/Guidelines';
+import Benefit from '../../Components/Home/Benefit';
+import FuturePlan from '../../Components/Home/FuturePlan';
 
 const Home = () => {
     return (
@@ -10,6 +12,8 @@ const Home = () => {
             <Banner />
             <ForWhat />
             <Feature />
+            <Benefit />
+            <FuturePlan />
             <Guidelines />
         </div>
     );
