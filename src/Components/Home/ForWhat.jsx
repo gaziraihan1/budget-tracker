@@ -1,12 +1,12 @@
 import React from "react";
 
-import { 
-  HiOutlineCash, 
-  HiOutlineClipboardList, 
-  HiOutlineChartBar, 
-  HiOutlineExclamationCircle, 
-  HiOutlinePresentationChartLine, 
-  HiOutlineDeviceMobile 
+import {
+  HiOutlineCash,
+  HiOutlineClipboardList,
+  HiOutlineChartBar,
+  HiOutlineExclamationCircle,
+  HiOutlinePresentationChartLine,
+  HiOutlineDeviceMobile,
 } from "react-icons/hi";
 import HomeContent from "../HomeContent/HomeContent";
 
@@ -14,52 +14,61 @@ const forWhat = [
   {
     title: "Lack of Expense Awareness",
     description:
-      "Most people don’t realize how much they spend on small, everyday items. These small amounts add up, making it hard to save at the end of the month.",
-    icon: <HiOutlineCash className="text-4xl text-blue-500 mx-auto mb-3" />,
+      "Small daily expenses add up quickly, making saving harder.",
+    icon: <HiOutlineCash className="text-2xl lg:text-3xl text-blue-500 mx-auto mb-3" />,
   },
   {
     title: "Difficulty in Budget Planning",
     description:
-      "Without a clear system, setting and sticking to a budget feels overwhelming. Many people give up because they don’t know how to track their spending properly.",
+      "Without a clear system, budgeting feels overwhelming and confusing.",
     icon: (
-      <HiOutlineClipboardList className="text-4xl text-green-500 mx-auto mb-3" />
+      <HiOutlineClipboardList className="text-2xl lg:text-3xl text-green-500 mx-auto mb-3" />
     ),
   },
   {
     title: "Unorganized Records",
     description:
-      "People often rely on memory or random notes to track expenses, which leads to confusion and inaccurate financial records.",
-    icon: <HiOutlineChartBar className="text-4xl text-yellow-500 mx-auto mb-3" />,
+      "Relying on memory or random notes leads to messy finances.",
+    icon: (
+      <HiOutlineChartBar className="text-2xl lg:text-3xl text-yellow-500 mx-auto mb-3" />
+    ),
   },
   {
     title: "Overspending Habits",
     description:
-      "Without regular tracking, it’s easy to spend more than you earn. Overspending creates financial stress and prevents healthy saving.",
+      "Without tracking, it’s easy to spend more than you earn.",
     icon: (
-      <HiOutlineExclamationCircle className="text-4xl text-red-500 mx-auto mb-3" />
+      <HiOutlineExclamationCircle className="text-2xl lg:text-3xl text-red-500 mx-auto mb-3" />
     ),
   },
   {
     title: "Lack of Visualization",
     description:
-      "Numbers on paper or in the mind are hard to interpret. Without charts or summaries, people struggle to understand their financial situation clearly.",
+      "Numbers alone don’t give a clear picture of your finances.",
     icon: (
-      <HiOutlinePresentationChartLine className="text-4xl text-purple-500 mx-auto mb-3" />
+      <HiOutlinePresentationChartLine className="text-2xl lg:text-3xl text-purple-500 mx-auto mb-3" />
     ),
   },
   {
     title: "No Centralized Tool",
     description:
-      "Existing tools are often too complicated, scattered across multiple apps, or not personalized. People need a simple, all-in-one place to manage their budget.",
+      "Most tools are scattered or complex; people need one simple solution.",
     icon: (
-      <HiOutlineDeviceMobile className="text-4xl text-indigo-500 mx-auto mb-3" />
+      <HiOutlineDeviceMobile className="text-2xl lg:text-3xl text-indigo-500 mx-auto mb-3" />
     ),
   },
 ];
 
+
 const ForWhat = () => {
   return (
-    <HomeContent contentTitle={'Why This is for you'} mapContent={forWhat}/>
+    <HomeContent
+      contentTitle={"Why you should chose it"}
+      mapContent={forWhat}
+      bgColor="bg-gradient-to-tl from-blue-200 via-indigo-300 to-purple-400
+"
+
+    />
   );
 };
 

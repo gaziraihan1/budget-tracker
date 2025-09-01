@@ -3,14 +3,15 @@ import { Link } from "react-router";
 
 const Banner = () => {
   return (
-    <section className="bg-gradient-to-r from-green-200 to-blue-200 py-16 lg:mt-1 ">
-      <div className="px-6 flex flex-col md:flex-row items-center justify-between gap-10  w-full lg:w-11/12 2xl:w-10/12 mx-auto">
+    <section className="bg-gradient-to-r from-green-200 to-blue-200 py-16 mt-1 ">
+      <div className="px-6 md:px-4 lg:px-0 flex flex-col md:flex-row items-center justify-between gap-10  w-full lg:w-11/12 2xl:w-10/12 mx-auto">
         <div className="md:w-1/2 text-center md:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800 leading-tight">
             Take Control of Your <span className="text-green-600">Budget</span>
           </h1>
           <p className="mt-4 text-lg text-gray-600">
-            Track expenses, manage savings, and achieve your financial goals with DailyBudget.
+            Track expenses, manage savings, and achieve your financial goals
+            with DailyBudget.
           </p>
           <div className="mt-6 flex justify-center md:justify-start gap-4">
             <Link

@@ -7,8 +7,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [alert, setAlert] = useState({show: false, message: '', type: "success"});
-  const {refetch} = useProfileContext();
+  const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
+  const { refetch } = useProfileContext();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,27 +23,31 @@ const Login = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginDetails),
-        credentials: "include"
+        credentials: "include",
       });
       const data = await res.json();
 
-      if(res.ok) {
-        await refetch()
+      if (res.ok) {
+        await refetch();
       }
-      if(res.status === 200) {
-        navigate('/')
+      if (res.status === 200) {
+        navigate("/");
+      } else if (res.status === 400) {
+        setAlert({ show: true, message: data.message, type: "error" });
+      } else if (res.status === 500) {
+        setAlert({
+          show: true,
+          message: data.error || "Login failed!",
+          type: "error",
+        });
       }
-      else if(res.status === 400) {
-        setAlert({show: true, message: data.message, type: 'error'})
-      }
-      else if (res.status === 500){
-        setAlert({show: true, message: data.error || 'Login failed!', type: 'error'});
+      else if (res.status === 403){
+        setAlert({show: true, message: "Network issue!", type: 'error'})
       }
     } catch (err) {
       console.error(err);
     }
   };
- 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-blue-200 px-4">
@@ -52,7 +60,9 @@ const Login = () => {
         </p>
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">Email</label>
+            <label className="block text-gray-700 mb-1 font-medium">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -63,7 +73,9 @@ const Login = () => {
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-1 font-medium">Password</label>
+            <label className="block text-gray-700 mb-1 font-medium">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Enter password"
@@ -88,15 +100,13 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      {
-        alert.show && (
-          <Alert 
+      {alert.show && (
+        <Alert
           message={alert.message}
           type={alert.type}
-          onClose={() => setAlert({...alert, show: false})}
-          />
-        )
-      }
+          onClose={() => setAlert({ ...alert, show: false })}
+        />
+      )}
     </div>
   );
 };

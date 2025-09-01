@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Alert from "../../Components/Alert/Alert";
-import useProfile from "../../hooks/userInfo/useProfile";
+import { useProfileContext } from "../../context/ProfileContext";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [alert, setAlert] = useState({ show: false, message: "", type: "success" });
-  const {profile} = useProfile();
+  const [alert, setAlert] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
+  const { profile } = useProfileContext();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -20,27 +24,29 @@ const Register = () => {
       body: JSON.stringify(registrationDetails),
     });
     const data = await res.json();
-    
-     if (res.status === 200) {
-        setAlert({ show: true, message: data.message, type: "success" });
-        navigate('/login')
-      }
-      else if(res.status === 400) {
-        setAlert({ show: true, message: data.message, type: "error" });
-      }
-       else if(res.status === 500) {
-        setAlert({ show: true, message: data.error || "Registration fail!", type: "error" });
-      }
+
+    if (res.status === 200) {
+      setAlert({ show: true, message: data.message, type: "success" });
+      navigate("/login");
+    } else if (res.status === 400) {
+      setAlert({ show: true, message: data.message, type: "error" });
+    } else if (res.status === 500) {
+      setAlert({
+        show: true,
+        message: data.error || "Registration fail!",
+        type: "error",
+      });
+    }
   };
 
-  if(profile) {
-    return navigate('/')
+  if (profile) {
+    return navigate("/");
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 to-blue-200 px-4">
       <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Register your account
         </h2>
         <form onSubmit={handleRegister} className="space-y-5">
