@@ -62,7 +62,7 @@ const futurePlans = [
 
 const FuturePlan = () => {
   return (
-    <HomeContent contentTitle={"Feature in Future"} mapContent={futurePlans} bgColor="bg-gradient-to-bl from-green-200 via-emerald-300 to-teal-400 text-white"
+    <HomeContent section={'future-plan'} contentTitle={"Feature in Future"} mapContent={futurePlans} bgColor="bg-gradient-to-bl from-green-200 via-emerald-300 to-teal-400 text-white"
 />
   );
 };

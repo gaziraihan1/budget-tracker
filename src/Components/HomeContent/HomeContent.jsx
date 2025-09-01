@@ -1,9 +1,9 @@
 import React from "react";
 import Card from "../cards/Card";
 
-const HomeContent = ({ contentTitle, mapContent, bgColor }) => {
+const HomeContent = ({ contentTitle, mapContent, bgColor, section }) => {
   return (
-    <section className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4">
+    <section id={section} className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4">
       <h2 className="text-center text-2xl lg:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
         {contentTitle}
       </h2>

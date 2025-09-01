@@ -48,6 +48,7 @@ const featureData = [
 const Feature = () => {
   return (
     <HomeContent
+    section={"features"}
       contentTitle={"Features are available"}
       mapContent={featureData}
       bgColor="bg-gradient-to-tl from-green-200 to-blue-300 text-white"

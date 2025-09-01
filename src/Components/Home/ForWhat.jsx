@@ -63,6 +63,7 @@ const forWhat = [
 const ForWhat = () => {
   return (
     <HomeContent
+    section={'why-this'}
       contentTitle={"Why you should chose it"}
       mapContent={forWhat}
       bgColor="bg-gradient-to-tl from-blue-200 via-indigo-300 to-purple-400

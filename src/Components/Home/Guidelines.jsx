@@ -39,7 +39,7 @@ const guidelines = [
 
 const Guidelines = () => {
   return (
-    <section className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4 ">
+    <section id="guidelines" className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4 ">
       <h2 className="text-center text-2xl lg:text-2xl 2xl:text-2xl font-bold mb-10">
         How to Use the Website
       </h2>

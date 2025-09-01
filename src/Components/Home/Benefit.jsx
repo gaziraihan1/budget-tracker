@@ -65,6 +65,7 @@ const benefits = [
 const Benefit = () => {
   return (
     <HomeContent
+    section={'benefits'}
       contentTitle={"Benefits the app provide"}
       mapContent={benefits}
       bgColor="bg-gradient-to-br from-pink-200 via-rose-300 to-red-400
