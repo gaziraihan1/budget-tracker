@@ -8,7 +8,6 @@ import {
   FiBarChart2,
   FiTrendingUp,
 } from "react-icons/fi";
-import Card from "../cards/Card";
 import HomeContent from "../HomeContent/HomeContent";
 
 const benefits = [
@@ -66,10 +65,11 @@ const Benefit = () => {
   return (
     <HomeContent
     section={'benefits'}
-      contentTitle={"Benefits the app provide"}
+      contentTitle={"Benefits the App Provides"}
       mapContent={benefits}
-      bgColor="bg-gradient-to-br from-pink-200 via-rose-300 to-red-400
-"
+      bgColor="bg-gradient-to-br from-pink-200 via-rose-300 to-red-400"
+      textColor="bg-gradient-to-br from-pink-400 via-rose-500 to-red-500 bg-clip-text text-transparent"
+
     />
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import Alert from "../../Components/Alert/Alert";
 import { useProfileContext } from "../../context/ProfileContext";
+import Alert from "../../Components/Shared/Alert/Alert";
 
 const Register = () => {
   const [name, setName] = useState("");

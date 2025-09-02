@@ -40,7 +40,7 @@ const guidelines = [
 const Guidelines = () => {
   return (
     <section id="guidelines" className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4 ">
-      <h2 className="text-center text-2xl lg:text-2xl 2xl:text-2xl font-bold mb-10">
+      <h2 className="text-center text-2xl lg:text-3xl 2xl:text-4xl bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent font-bold mb-10 ">
         How to Use the Website
       </h2>
 

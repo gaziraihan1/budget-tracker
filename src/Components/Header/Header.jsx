@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import Alert from "../Alert/Alert";
+import Alert from "../Shared/Alert/Alert";
 import { useProfileContext } from "../../context/ProfileContext";
 
 const Header = () => {
@@ -37,7 +37,7 @@ const Header = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <Link to={"/budget-tracker"}>My Budget</Link>
+        <Link to={"/budget-tracker"}>All Tool</Link>
       </li>
       {!profile && (
         <>
@@ -55,7 +55,7 @@ const Header = () => {
   return (
     <nav className="bg-white shadow-md px-4 lg:px-0 py-3">
       <div className="w-full lg:w-11/12 2xl:w-10/12 mx-auto flex justify-between items-center">
-        <div className="text-xl font-bold">DailyBudget</div>
+        <div className="text-xl font-bold">Student Tool Kit</div>
         <ul className="hidden md:flex gap-6 lg:gap-12  items-center">{links}</ul>
         {profile && (
           <div className="hidden md:block">

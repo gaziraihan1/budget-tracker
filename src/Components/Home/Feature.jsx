@@ -20,7 +20,9 @@ const featureData = [
     title: "Categorize Spending",
     description:
       "Categorize spending (food, transport, bills, shopping, etc.).",
-    icon: <HiOutlineTag className="text-2xl lg:text-3xl text-green-500 mx-auto mb-3" />,
+    icon: (
+      <HiOutlineTag className="text-2xl lg:text-3xl text-green-500 mx-auto mb-3" />
+    ),
   },
   {
     title: "Visualize Data",
@@ -48,10 +50,11 @@ const featureData = [
 const Feature = () => {
   return (
     <HomeContent
-    section={"features"}
+      section={"features"}
       contentTitle={"Features are available"}
       mapContent={featureData}
       bgColor="bg-gradient-to-tl from-green-200 to-blue-300 text-white"
+      textColor="bg-gradient-to-tl from-green-400 to-blue-500 bg-clip-text text-transparent"
     />
   );
 };

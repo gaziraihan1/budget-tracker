@@ -1,10 +1,21 @@
 import React from "react";
-import Card from "../cards/Card";
+import Card from "../Shared/cards/Card";
 
-const HomeContent = ({ contentTitle, mapContent, bgColor, section }) => {
+const HomeContent = ({
+  contentTitle,
+  mapContent,
+  bgColor,
+  section,
+  textColor,
+}) => {
   return (
-    <section id={section} className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4">
-      <h2 className="text-center text-2xl lg:text-3xl 2xl:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+    <section
+      id={section}
+      className="w-full lg:w-11/12 2xl:w-10/12 mx-auto px-4"
+    >
+      <h2
+        className={`text-center text-2xl lg:text-3xl 2xl:text-4xl font-bold ${textColor}`}
+      >
         {contentTitle}
       </h2>
 

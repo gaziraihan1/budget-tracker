@@ -64,11 +64,10 @@ const ForWhat = () => {
   return (
     <HomeContent
     section={'why-this'}
-      contentTitle={"Why you should chose it"}
+      contentTitle={"Why You Should Choose It"}
       mapContent={forWhat}
-      bgColor="bg-gradient-to-tl from-blue-200 via-indigo-300 to-purple-400
-"
-
+      bgColor="bg-gradient-to-tl from-blue-200 via-indigo-300 to-purple-400"
+      textColor="bg-gradient-to-tl from-blue-400 via-indigo-500 to-purple-500 bg-clip-text text-transparent"
     />
   );
 };
