@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QAGenerator = () => {
+const RegisteredData = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const QAGenerator = () => {
     );
 };
 
-export default QAGenerator;
+export default RegisteredData;

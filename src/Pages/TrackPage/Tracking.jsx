@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
 import Button from '../../Components/Shared/TrackingButton/Button';
+import ClassSchedule from '../../Components/TrackPageContent/ClassSchedule';
+import BudgetTracker from '../../Components/TrackPageContent/BudgetTracker';
+import QAGenerator from '../../Components/TrackPageContent/QAGenerator';
+import StudyPlanner from '../../Components/TrackPageContent/StudyPlanner';
 
 const Tracking = () => {
     const [activeButton, setActiveButton] = useState('classSchedule');
@@ -16,10 +20,10 @@ const Tracking = () => {
             <h1 className='mt-2 text-2xl font-bold text-center'>
                 Hey dear, i wish you a very cool day.
             </h1>
-            <p className='py-4 text-center'>
+            <p className='py-2 text-center font-thin text-sm '>
                 Here you can use all tools and save your data, but if you want to save your data in your account then you must need <Link to={'/register'} className='underline text-blue-600'>register</Link> to create an account.
             </p>
-            <div className='mx-auto w-full flex flex-wrap items-center justify-center gap-4'>
+            <div className='mx-auto w-full flex flex-wrap items-center justify-center gap-4 py-4 border-b-1 border-gray-200'>
                 {
                     buttons.map(btn => (
                         <Button
@@ -30,6 +34,20 @@ const Tracking = () => {
                         setActiveButton={setActiveButton}
                         />
                     ))
+                }
+            </div>
+            <div>
+                {
+                    activeButton === 'classSchedule' && <ClassSchedule />
+                }
+                {
+                    activeButton === 'trackBudget' && <BudgetTracker />
+                }
+                {
+                    activeButton === "qaGenerator" && <QAGenerator />
+                }
+                {
+                    activeButton === 'studyPlanner' && <StudyPlanner />
                 }
             </div>
         </div>
