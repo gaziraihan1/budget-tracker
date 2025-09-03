@@ -1,16 +1,42 @@
-import React, { useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useProfileContext } from '../../context/ProfileContext';
 import RegisteredData from './ClassScheduleComponent/RegisteredData';
 import UnRegisteredData from './ClassScheduleComponent/UnRegisteredData';
+import Alert from '../Shared/Alert/Alert';
 
 const ClassSchedule = () => {
-  const { profile } = useProfileContext();
+  const { profile, loading } = useProfileContext();
+  
+  const [alert, setAlert] = useState({
+      show: false,
+      message: "",
+      type: "success",
+    });
+    const [allSchedule, setAllSchedule] = useState([]);
+    useEffect(() => {
+      const fetchSchedule = async () => {
+        if(!profile?.user?.email) {
+          return
+        };
+
+        const res = await fetch(`http://localhost:5000/schedule?email=${[profile.user.email]}`);
+        const data = await res.json();
+        setAllSchedule(data)
+      };
+      fetchSchedule()
+    }, [profile]);
+
+    const handleDeleteSchedule = (id) => {
+      setAllSchedule(prev => prev.filter(item => item._id !== id))
+    }
+    
+
   const [formData, setFormData] = useState({
     name: "",
     days: [],
     startTime: "",
     endTime: "",
-    key: String(Math.random())
+    key: String(Math.random()),
   });
 
    const [formList, setFormList] = useState(() => {
@@ -35,12 +61,38 @@ const ClassSchedule = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+ 
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedList = [...formList, formData];
     setFormList(updatedList);
+    const scheduleSent = {
+      name: formData.name,
+      startTime: formData.startTime,
+      endTime: formData.endTime,
+      days: formData.days,
+      email: profile?.user?.email
+    }
 
     localStorage.setItem("formList", JSON.stringify(updatedList));
+
+    const res = await fetch("http://localhost:5000/schedule", ({
+      method: 'POST',
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify(scheduleSent)
+    }));
+    const data = await res.json()
+    
+    
+    if(res.status === 200) {
+      setAlert({show: true, message: data.message, type: 'success'})
+    }
+    if(profile) {
+      setAllSchedule(prev => [...prev, scheduleSent])
+    }
 
     setFormData({
       name: "",
@@ -120,12 +172,26 @@ const ClassSchedule = () => {
         </button>
       </form>
       <div className="mt-6">
-        {profile ? (
-          <RegisteredData />
+        { loading ? <div className='flex justify-center items-center'>
+          <span className="h-12 w-12 rounded-full border-4 border-t-transparent border-blue-500 animate-spin">
+
+          </span>
+        </div> :
+        profile ? (
+          <RegisteredData allSchedule={allSchedule} onDelete={handleDeleteSchedule} setFormList={setFormList}/>
         ) : (
           <UnRegisteredData formList={formList} setFormList={setFormList}/>
         )}
       </div>
+      {
+        alert.show && (
+          <Alert
+          message={alert.message}
+          type={alert.type}
+          onClose={() => setAlert({ ...alert, show: false })}
+        />
+        )
+      }
     </div>
   );
 };

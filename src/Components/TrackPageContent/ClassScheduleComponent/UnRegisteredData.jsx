@@ -22,7 +22,6 @@ const UnRegisteredData = ({ formList, setFormList }) => {
         setFormList(updatedList);
         localStorage.setItem("formList", JSON.stringify(updatedList))
     }
-    console.log(formList)
   return (
     <div className="mt-6 overflow-x-auto">
       {formList.length > 0 ? (
