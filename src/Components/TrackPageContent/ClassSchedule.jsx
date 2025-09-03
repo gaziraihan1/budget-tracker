@@ -55,7 +55,7 @@ const ClassSchedule = () => {
       <h2 className="text-lg lg:text-xl 2xl:text-2xl text-center my-2 bg-gradient-to-tl from-indigo-600 via-emerald-700 to-cyan-700 bg-clip-text text-transparent font-semibold">
         Create and manage your class schedule
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 py-4 border-b border-gray-200">
         <div>
           <label className="block mb-1 font-medium">Class Name</label>
           <input
@@ -84,7 +84,9 @@ const ClassSchedule = () => {
             ))}
           </div>
         </div>
-        <div>
+        <div className='flex flex-wrap justify-between space-y-4'>
+
+        <div className='w-full md:w-[48%]'>
           <label className="block mb-1 font-medium">Start Time</label>
           <input
             type="time"
@@ -96,7 +98,7 @@ const ClassSchedule = () => {
             className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
           />
         </div>
-        <div>
+        <div className='w-full md:w-[48%]'>
           <label className="block mb-1 font-medium">End Time</label>
           <input
             type="time"
@@ -108,19 +110,20 @@ const ClassSchedule = () => {
             className="w-full border rounded-lg p-2 focus:ring focus:ring-blue-300"
           />
         </div>
+        </div>
 
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
         >
-          Submit
+          Create Schedule
         </button>
       </form>
       <div className="mt-6">
         {profile ? (
           <RegisteredData />
         ) : (
-          <UnRegisteredData formList={formList} />
+          <UnRegisteredData formList={formList} setFormList={setFormList}/>
         )}
       </div>
     </div>
